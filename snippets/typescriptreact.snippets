@@ -1,0 +1,89 @@
+extends typescript
+
+snippet __log "console.log()"
+	console.log(${1});
+
+snippet __int "Interface"
+	interface ${1} {
+		${2}
+	}
+
+snippet __pro "Props"
+	const Props = {
+		${1}
+	}
+
+snippet __uss "useState"
+	const [${1}, set${2}] = useState(${3});
+
+snippet __const "const"
+	const ${1}: ${2:any} = ${3};
+
+snippet __constc "const Completo"
+	const ${1} = (${2}) => {
+		${3}
+	};
+
+snippet __use "useEffect"
+	useEffect(() => {
+		${1}
+	}, []);
+
+snippet __usecomplex "useEffect Complejo"
+	useEffect(() => {
+		let isMounted = true;  
+
+		if (isMounted) {
+			(async () => {
+				${1}
+			})();
+		}
+
+		return () => { isMounted = false };
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+snippet __imp "import"
+	import { ${2} } from '${1}';
+
+snippet __fun "function"
+	function ${1}(${2}) {
+		${0}
+	}
+
+snippet __index "Index component"
+	import ${2} from "${1}";
+
+	export {
+		${3}
+	}
+
+snippet __rafc "Component"
+	import React from 'react';
+
+	const ${1} = () => {
+		${2}
+
+		return (
+			<>
+				${3}
+			</>
+		);
+	};
+
+	export default ${1}
+
+snippet __rafe "Component Export"
+	import React from 'react';
+
+	export const ${1} = () => {
+		${2}
+
+		return (
+			<>
+				${3}
+			</>
+		);
+	};
+
+
