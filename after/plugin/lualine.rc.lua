@@ -2,34 +2,25 @@ local status, lualine = pcall(require, 'lualine')
 if (not status) then return end
 
 
-local colors = {
+--[[ local colors = {
    bg        = '#202328',
-   fg        = '#bbc2cf',
-   yellow    = '#f8df11',
-   cyan      = '#008080',
+   yellow    = '#ba8700',
+   darkgreen = '#042a36',
    darkblue  = '#081633',
-   green     = '#b0e000',
+   green     = '#859900',
    orange    = '#fb8801',
-   violet    = '#a9a1e1',
-   magenta   = '#ae81ff',
-   blue      = '#648ce1',
-   red       = '#f43d5c',
-   green_bg  = '#b0e000',
-   green_fg  = '#0f6400',
-   white_bg  = '#ffffff',
-   white_fg  = '#136c6c',
-   orange_bg = '#fb8801',
-   orange_fg = '#8c0503',
-   red_bg    = '#f43d5c',
-   red_fg    = '#ffffff',
-   gray      = '#44515d',
+   violet    = '#6c71c4',
+   blue      = '#268bd2',
+   red       = '#dc322f',
+   gray      = '#596164',
+   lightgray = '#93a1a1',
 }
 
 
 local mode_color_detail = {
    n = colors.green,
    i = colors.red,
-   V = colors.orange,
+   V = colors.yellow,
 }
 
 local mode_text = {
@@ -112,12 +103,14 @@ ins_left {
       local mode_color_bg = {
          n = colors.green,
          i = colors.red,
-         v = colors.orange,
-         V = colors.orange,
-         c = colors.magenta,
+         v = colors.yellow,
+         [''] = colors.blue,
+         V = colors.yellow,
+         c = colors.violet,
          no = colors.red,
          s = colors.orange,
          S = colors.orange,
+         [''] = colors.orange,
          ic = colors.yellow,
          R = colors.red_bg,
          Rv = colors.violet,
@@ -135,9 +128,16 @@ ins_left {
 }
 
 ins_left {
+   -- filesize component
+   'filesize',
+   cond = conditions.buffer_not_empty,
+   color = { fg = colors.gray },
+}
+
+ins_left {
    'filename',
    cond = conditions.buffer_not_empty,
-   color = { fg = colors.magenta },
+   color = { fg = colors.blue },
 }
 ins_left {
    'diagnostics',
@@ -146,7 +146,7 @@ ins_left {
    diagnostics_color = {
       color_error = { fg = colors.red },
       color_warn = { fg = colors.orange },
-      color_info = { fg = colors.cyan },
+      color_info = { fg = colors.green },
    },
 }
 ins_left {
@@ -175,7 +175,7 @@ ins_right {
    symbols = { added = ' ', modified = '柳', removed = ' ' },
    diff_color = {
       added = { fg = colors.green },
-      modified = { fg = colors.orange },
+      modified = { fg = colors.yellow },
       removed = { fg = colors.red },
    },
    cond = conditions.hide_in_width,
@@ -190,4 +190,36 @@ ins_right {
    padding = { left = 1 },
 }
 
-lualine.setup(config)
+lualine.setup(config) ]]
+
+
+local colors = {
+   bg        = '#202328',
+   yellow    = '#ba8700',
+   darkgreen = '#042a36',
+   darkblue  = '#081633',
+   green     = '#859900',
+   orange    = '#fb8801',
+   violet    = '#6c71c4',
+   blue      = '#268bd2',
+   red       = '#dc322f',
+   gray      = '#596164',
+   lightgray = '#93a1a1',
+}
+
+local custom_theme = require('lualine.themes.solarized_dark')
+custom_theme.normal.a.bg = colors.yellow
+custom_theme.normal.b.bg = colors.bg
+custom_theme.normal.b.fg = colors.lightgray
+custom_theme.normal.c.bg = colors.bg
+custom_theme.normal.c.fg = colors.lightgray
+
+custom_theme.insert.a.bg = colors.red
+custom_theme.insert.a.fg = colors.bg
+custom_theme.visual.a.bg = colors.green
+custom_theme.visual.a.fg = colors.bg
+
+
+require('lualine').setup {
+   options = { theme = custom_theme },
+}

@@ -16,7 +16,8 @@ prettier.setup({
       "scss",
       "typescript",
       "typescriptreact",
-      "yaml"
+      "yaml",
+      "vue"
    },
    arrow_parens = "always",
    bracket_same_line = false,

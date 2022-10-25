@@ -1,4 +1,5 @@
 local keymap = vim.keymap
+local opts = { silent = true }
 
 -- Do not yank with x
 keymap.set('n', 'x', '"_x')
@@ -31,3 +32,7 @@ keymap.set('n', '<leader>s', ':so %<CR>', { noremap = true }); -- Reload lua
 -- disable recording macros
 keymap.set('n', 'q', '<Nop>')
 keymap.set('n', 'Q', '<Nop>')
+
+-- center search results
+keymap.set('n', 'n', 'nzz')
+keymap.set('n', 'N', 'Nzz', opts)

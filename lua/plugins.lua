@@ -32,6 +32,8 @@ packer.startup(function(use)
       requires = { "nvim-lua/plenary.nvim" },
    })
    use 'MunifTanjim/prettier.nvim'
+   use 'williamboman/mason.nvim'
+   use 'williamboman/mason-lspconfig.nvim'
 
    use 'windwp/nvim-autopairs'
    use 'windwp/nvim-ts-autotag'
