@@ -14,6 +14,7 @@ ts.setup {
       "css",
       "fish",
       "html",
+      "lua",
       "javascript",
       "json",
       "php",
